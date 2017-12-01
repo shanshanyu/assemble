@@ -1,0 +1,20 @@
+data segment
+array1 db "hello!"
+data ends
+;
+extra segment
+array2 db 6 dup(?)
+extra ends
+;
+codesg segment
+assume cs:codesg ds:data es:extra
+mov ax,data
+mov ds,ax
+mov bx,extra
+mov es,bx
+lea si,array1
+lea di array2
+mov cx,6
+cld
+codesg ends
+end
