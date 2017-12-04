@@ -15,7 +15,7 @@ mov es,bx
 lea si,array1
 lea di,array2
 mov cx,6
-rep movsb
 cld
+rep movsb
 codesg ends
 end
