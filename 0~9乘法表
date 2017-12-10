@@ -1,0 +1,31 @@
+codesg segment
+assume cs:codesg
+mov ah,1
+int 21h
+mov bl,al 
+mov ah,2   ;输入换行 回车
+mov dl,0ah
+int 21h
+mov dl,0dh
+int 21h
+mov ah,1
+int 21h    ;从这里开始到mov bx,ax之间，不能有ah=2或1的中断，会改变al的值
+sub al,30h
+sub bl,30h
+mul bl
+aam
+mov bx,ax  ;ah=2的int 21中断中，al的值会改变（标准文档中没写）
+or bx,3030h
+mov ah,2   ;输入换行 回车
+mov dl,0ah
+int 21h
+mov dl,0dh
+int 21h
+mov dl,bh
+int 21h
+mov dl,bl
+int 21h
+mov ax,4c00h
+int 21h
+codesg ends
+end
