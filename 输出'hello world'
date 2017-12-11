@@ -1,0 +1,13 @@
+data segment
+string db "hello world",10,13,$ ;int 21h 中9号中断输出字符串，以$ 结尾
+data ends
+codesg segment
+start: mov ax,data
+mov ds,ax
+lea dx,string
+mov ah,9
+int 21h
+mov ax,4c00h
+int 21h
+codesg ends
+end start
