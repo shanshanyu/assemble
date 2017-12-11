@@ -1,7 +1,8 @@
 data segment
-string db "hello world",10,13,$ ;int 21h 中9号中断输出字符串，以$ 结尾
+string db "hello world",10,13,'$' ;int 21h 中9号中断输出字符串，以 '$' 结尾  
 data ends
 codesg segment
+assume cs:codesg,ds:data
 start: mov ax,data
 mov ds,ax
 lea dx,string
